@@ -14,8 +14,8 @@ Steps I used to initialise the typescript node project :
   |--rootDir|Folder where we put our Typescript code `/src`. Only use to control the output directory structure with `--outDir`.|
   |--outDir|Typescript to JavaScript compiled code goes here.|
   |--module|Specify module system for JavaScript files used in project.|
-  |--esModuleInterop|It instructs TypeScript to allow us to use an import like this `import myModule from '../myModule'` instead of `import myModule = require('../myModule')` even if your module system defines `CommonJS`.[Reference 2]|
-  |--lib|If your `target` is `es5` but you will be using `es6` or `esnext` features then you can specify it in this option.[Reference 2]|
+  |--esModuleInterop|It instructs TypeScript to allow us to use an import like this `import myModule from '../myModule'` instead of `import myModule = require('../myModule')` even if your module system defines `CommonJS`. _[source <sup>:arrow_upper_right:</sup>](https://medium.com/javascript-in-plain-english/typescript-configuration-options-tsconfig-json-561d4a2ad4b)_|
+  |--lib|If your `target` is `es5` but you will be using `es6` or `esnext` features then you can specify it in this option. _[source <sup>:arrow_upper_right:</sup>](https://medium.com/javascript-in-plain-english/typescript-configuration-options-tsconfig-json-561d4a2ad4b)_|
   |--allowJs|If you have JavaScript in your project, should it be compiled with Typescript.|
   |--resolveJsonModule|Include modules imported with .json extension.|
   |--noImplicitAny|Raise error on expressions and declarations with an implied any type.|
