@@ -1,6 +1,6 @@
-## Simple notes and code snippets I made while studying typescript.
+## Simple code snippets I made while studying typescript.
 You'll notice you can find most of them on the typescript website :stuck_out_tongue:
-Then why'd I do this, well just for fun :man_shrugging: :grin:
+Then why'd I do this? Well just for fun :man_shrugging: :grin:
 
 ***
 
@@ -9,21 +9,20 @@ Steps I used to initialise the typescript node project :
 2. `npm install typescript nodemon @types/node --save-dev`
 3. `npx tsc --init --rootDir src --outDir build --lib es6,dom --module commonjs --allowJs true --esModuleInterop --resolveJsonModule --noImplicitAny true`
 
-  |Option|Description|      
-  |----|-----|      
-  |--rootDir|Specifies the root directory of input files. Only use to control the output directory structure with --outDir.|
-  |--outDir|Redirect output structure to the directory.|
-  |--esModuleInterop|Emit __importStar and __importDefault helpers for runtime babel ecosystem compatibility and enable --allowSyntheticDefaultImports for typesystem compatibility.|
+  |Option|Description|
+  |----|-----|
+  |--rootDir|Folder where we put our Typescript code `/src`. Only use to control the output directory structure with `--outDir`.|
+  |--outDir|Typescript to JavaScript compiled code goes here.|
+  |--module|Specify module system for JavaScript files used in project.|
+  |--esModuleInterop|It instructs TypeScript to allow us to use an import like this `import myModule from '../myModule'` instead of `import myModule = require('../myModule')` even if your module system defines `CommonJS`.[Reference 2]|
+  |--lib|If your `target` is `es5` but you will be using `es6` or `esnext` features then you can specify it in this option.[Reference 2]|
+  |--allowJs|If you have JavaScript in your project, should it be compiled with Typescript.|
   |--resolveJsonModule|Include modules imported with .json extension.|
-  |--lib|List of library files to be included in the compilation.|
-  |--allowJs|Allow JavaScript files to be compiled.|
-  |--module|Specify module code generation|
   |--noImplicitAny|Raise error on expressions and declarations with an implied any type.|
 
-  _Source: [Typescript Handbook] (https://www.typescriptlang.org/docs/handbook/compiler-options.html)_
+  _Sources: [Typescript Handbook](https://www.typescriptlang.org/docs/handbook/compiler-options.html) | [Understanding TypeScript Configuration Options](https://medium.com/javascript-in-plain-english/typescript-configuration-options-tsconfig-json-561d4a2ad4b)_
 
-<br/><br/>
-4. create a `nodemon.json` file as following (So that you don't have to compile again and again after making changes, `nodemon` takes care of that.) :
+4. Create a `nodemon.json` file as following (So that you don't have to compile again and again after making changes, `nodemon` takes care of that.) :
   ```json
     {
       "watch": ["src"],
@@ -33,7 +32,7 @@ Steps I used to initialise the typescript node project :
     }
   ```
 
-5. change `package.json` as following :
+5. Change `package.json` as following :
   ```json
     "scripts": {
       "start": "nodemon",
@@ -42,3 +41,8 @@ Steps I used to initialise the typescript node project :
   ```
 
 6. `npm start`. Your all the `.ts` files get compiled to `.js` in build folder and then you can run them using `node `_./build/<your_compiled_file.js>_
+
+### _References:_
+1. https://www.typescriptlang.org/docs/handbook/intro.html
+2. https://khalilstemmler.com/blogs/typescript/node-starter-project/
+3. https://medium.com/javascript-in-plain-english/typescript-configuration-options-tsconfig-json-561d4a2ad4b
