@@ -63,3 +63,20 @@ interface MyUTCDateInterface {
 }
 declare function getMyUTCDate(): MyUTCDateInterface;
 declare const myUTCDate: MyUTCDateInterface;
+interface ClassInterface1 {
+    variable1: string;
+    variable2: number;
+    method(prop: string): void;
+}
+declare class Class1 implements ClassInterface1 {
+    variable1: string;
+    variable2: number;
+    constructor();
+    method(prop: string): void;
+}
+declare const class1Object: ClassInterface1;
+interface Class2Constructor {
+    new (prop: string): ClassInterface1;
+}
+declare const Class2: Class2Constructor;
+declare const class2Object: ClassInterface1;

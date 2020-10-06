@@ -77,5 +77,29 @@ console.log(myUTCDate);
 console.log(myUTCDate());
 console.log(myUTCDate.objName);
 console.log(myUTCDate.dateLength);
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-//Interfaces for classes
+var Class1 = /** @class */ (function () {
+    function Class1() {
+        this.variable1 = "variable1";
+        this.variable2 = 9999;
+        console.log("class1 constructor");
+    }
+    Class1.prototype.method = function (prop) {
+        console.log("class1 method: ", prop);
+    };
+    return Class1;
+}());
+var class1Object = new Class1();
+class1Object.method("Hola");
+var Class2 = /** @class */ (function () {
+    function Class2(prop) {
+        this.variable1 = "variable1";
+        this.variable2 = 9999;
+        console.log("class2 constructor initialised with passed argument: ", prop);
+    }
+    Class2.prototype.method = function (prop) {
+        console.log("class2 method: ", prop);
+    };
+    return Class2;
+}());
+var class2Object = new Class2("Init");
+class2Object.method("Hola from class2Object");
