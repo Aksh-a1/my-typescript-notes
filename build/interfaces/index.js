@@ -58,12 +58,12 @@ console.log(val5);
 val5.del("a");
 console.log(val5);
 var val6 = {};
-val6.name = "Inherited Parent1";
+val6.name = "Inherited ParentInterface1";
 val6.child1Method = function (prop) { return console.log(prop); };
 val6.child1Method("val6 called");
 var val7 = {};
-val7.name = "Inherited Parent1";
-val7.type = "Inherited Parent2";
+val7.name = "Inherited ParentInterface1";
+val7.type = "Inherited ParentInterface2";
 val7.child2Method = function (prop) { return console.log(prop); };
 val7.child2Method("val7 called");
 function getMyUTCDate() {
@@ -77,29 +77,4 @@ console.log(myUTCDate);
 console.log(myUTCDate());
 console.log(myUTCDate.objName);
 console.log(myUTCDate.dateLength);
-var Class1 = /** @class */ (function () {
-    function Class1() {
-        this.variable1 = "variable1";
-        this.variable2 = 9999;
-        console.log("class1 constructor");
-    }
-    Class1.prototype.method = function (prop) {
-        console.log("class1 method: ", prop);
-    };
-    return Class1;
-}());
-var class1Object = new Class1();
-class1Object.method("Hola");
-var Class2 = /** @class */ (function () {
-    function Class2(prop) {
-        this.variable1 = "variable1";
-        this.variable2 = 9999;
-        console.log("class2 constructor initialised with passed argument: ", prop);
-    }
-    Class2.prototype.method = function (prop) {
-        console.log("class2 method: ", prop);
-    };
-    return Class2;
-}());
-var class2Object = new Class2("Init");
-class2Object.method("Hola from class2Object");
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

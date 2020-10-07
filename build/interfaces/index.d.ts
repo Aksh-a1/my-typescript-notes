@@ -42,20 +42,20 @@ interface IndexableType3 {
     del: Function1;
 }
 declare const val5: IndexableType3;
-interface Parent1 {
+interface ParentInterface1 {
     name: string;
 }
-interface Child1 extends Parent1 {
+interface ChildInterface1 extends ParentInterface1 {
     child1Method(prop: string): void;
 }
-interface Parent2 {
+interface ParentInterface2 {
     type: string;
 }
-interface Child2 extends Parent1, Parent2 {
+interface ChildInterface2 extends ParentInterface1, ParentInterface2 {
     child2Method(prop: string): void;
 }
-declare const val6: Child1;
-declare const val7: Child2;
+declare const val6: ChildInterface1;
+declare const val7: ChildInterface2;
 interface MyUTCDateInterface {
     (): number;
     dateLength: number;
@@ -63,20 +63,3 @@ interface MyUTCDateInterface {
 }
 declare function getMyUTCDate(): MyUTCDateInterface;
 declare const myUTCDate: MyUTCDateInterface;
-interface ClassInterface1 {
-    variable1: string;
-    variable2: number;
-    method(prop: string): void;
-}
-declare class Class1 implements ClassInterface1 {
-    variable1: string;
-    variable2: number;
-    constructor();
-    method(prop: string): void;
-}
-declare const class1Object: ClassInterface1;
-interface Class2Constructor {
-    new (prop: string): ClassInterface1;
-}
-declare const Class2: Class2Constructor;
-declare const class2Object: ClassInterface1;

@@ -125,30 +125,30 @@ console.log(val5)
 
 // Extending intefaces
 
-interface Parent1 {
+interface ParentInterface1 {
     name: string
 }
 
-interface Child1 extends Parent1 {
+interface ChildInterface1 extends ParentInterface1 {
     child1Method(prop: string): void
 }
 
-interface Parent2 {
+interface ParentInterface2 {
     type: string
 }
 
-interface Child2 extends Parent1, Parent2 {
+interface ChildInterface2 extends ParentInterface1, ParentInterface2 {
     child2Method(prop: string): void
 }
 
-const val6 = {} as Child1
-val6.name = "Inherited Parent1"
+const val6 = {} as ChildInterface1
+val6.name = "Inherited ParentInterface1"
 val6.child1Method = (prop) => console.log(prop)
 val6.child1Method("val6 called")
 
-const val7 = {} as Child2
-val7.name = "Inherited Parent1"
-val7.type = "Inherited Parent2"
+const val7 = {} as ChildInterface2
+val7.name = "Inherited ParentInterface1"
+val7.type = "Inherited ParentInterface2"
 val7.child2Method = (prop) => console.log(prop)
 val7.child2Method("val7 called")
 
@@ -176,49 +176,3 @@ console.log(myUTCDate.objName)
 console.log(myUTCDate.dateLength)
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-//Interfaces for classes
-
-// checking instance side of the class
-interface ClassInterface1 {
-    variable1: string
-    variable2: number
-    method(prop: string): void
-}
-
-class Class1 implements ClassInterface1 {
-    variable1: string = "variable1"
-    variable2: number = 9999
-
-    constructor() {
-        console.log("class1 constructor")
-    }
-
-    method(prop: string) {
-        console.log("class1 method: ", prop)
-    }
-}
-
-const class1Object: ClassInterface1 = new Class1()
-class1Object.method("Hola")
-
-// checking the static side of the class i.e. constructor
-interface Class2Constructor {
-    // type signature for class constructor which upon instantiation will
-    // return an object which implements 'ClassInterface1' interface type.
-    new (prop: string): ClassInterface1
-}
-
-const Class2: Class2Constructor = class Class2 implements ClassInterface1 {
-    variable1: string = "variable1"
-    variable2: number = 9999
-    constructor(prop: string) {
-        console.log("class2 constructor initialised with passed argument: ", prop)
-    }
-    method(prop: string) {
-        console.log("class2 method: ", prop)
-    }
-}
-
-const class2Object = new Class2("Init")
-class2Object.method("Hola from class2Object")
