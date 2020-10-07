@@ -24,8 +24,9 @@ interface FunctionInterface {
 
 const Func5: FunctionInterface = (prop1, prop2 = 9999) => {
     console.log(prop1+prop2)
-    // return 0 //This will give error because Func4 implements
+    // Below return statement will give error because Func4 implements
     // FunctionInterface and in that it is given that function will return boolean
+    // return 0
     return true
 }
 
