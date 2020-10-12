@@ -12,3 +12,6 @@ interface FunctionInterface2 {
     (prop1: string, prop2?: number, ...rest: number[]): boolean;
 }
 declare const Func6: FunctionInterface2;
+declare const DoubleIt: (prop: any) => any;
+declare function DoubleItTyped(prop: string): string;
+declare function DoubleItTyped(prop: number): number;

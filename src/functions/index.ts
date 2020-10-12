@@ -47,6 +47,8 @@ Func5(prop1)
 // Func1(prop1, prop2, 3) // cannot pass extra values
 // Func1(1, 2) // type mismatch for arguments
 
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 //Rest parameters
 interface FunctionInterface2 {
     (prop1: string, prop2?: number, ...rest: number[]): boolean
@@ -59,4 +61,49 @@ const Func6: FunctionInterface2 = (prop1, prop2, ...rest) => {
     return true
 }
 Func6(prop1, prop2, 1,2,3,4,5,6)
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+//Function overloading
+
+// Typing the function any and then checking types inside it and if it matches
+// return the appropriate value by doubling it.
+// User will not know that our function only operates on 'string' and 'number'.
+const DoubleIt = (prop: any): any => {
+    if(typeof prop === 'string') {
+        return `${prop}${prop}`
+    }
+    if(typeof prop === 'number') {
+        return 2*prop
+    }
+}
+
+console.log(DoubleIt(99))
+console.log(DoubleIt('Hi'))
+console.log(DoubleIt([1,2,3,4]))
+
+function DoubleItTyped(prop: string): string
+function DoubleItTyped(prop: number): number
+
+// Even if we use any here but since we have defined only 2 signatures of our
+// function above user will know now that our function only accepts 'number'
+// and 'string'. And below function is not part of overloading.
+function DoubleItTyped(prop: any): any {
+    if(typeof prop === 'string') {
+        return `${prop}${prop}`
+    }
+    if(typeof prop === 'number') {
+        return 2*prop
+    }
+}
+
+console.log(DoubleItTyped(99))
+console.log(DoubleItTyped('Hola'))
+// console.log(DoubleItTyped([1,2,3,4]) // Cannot do this because only number and string is expected.
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+// this parameter
+
+
 

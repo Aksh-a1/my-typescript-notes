@@ -1,13 +1,23 @@
 ## Simple code snippets I made while studying typescript.
 You'll notice you can find most of them on the typescript website :stuck_out_tongue:
 Then why'd I do this? Well just for fun :man_shrugging: :grin:
+***
+
+### Prerequisites
+1. `JavaScript`
+2. `NodeJS`
+3. `npm`
 
 ***
 
-Steps I used to initialise the typescript node project :
+## Setup
+
+Steps used to initialise a basic typescript node project :
 1. `npm init -y`
 2. `npm install typescript nodemon @types/node --save-dev`
 3. `npx tsc --init --rootDir src --outDir build --lib es6,dom --module commonjs --allowJs true --esModuleInterop --resolveJsonModule --noImplicitAny true`
+
+_Step 3 is totally your choice which options you choose to enable and what values you prefer._
 
   |Option|Description|
   |----|-----|
@@ -41,6 +51,8 @@ Steps I used to initialise the typescript node project :
   ```
 
 6. `npm start`. Your all the `.ts` files get compiled to `.js` in build folder and then you can run them using `node `_./build/<your_compiled_file.js>_
+
+***
 
 ### _References:_
 1. https://www.typescriptlang.org/docs/handbook/intro.html
