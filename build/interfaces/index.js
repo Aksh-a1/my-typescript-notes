@@ -67,14 +67,16 @@ val7.type = "Inherited ParentInterface2";
 val7.child2Method = function (prop) { return console.log(prop); };
 val7.child2Method("val7 called");
 function getMyUTCDate() {
-    var myDate = function () { return Date.UTC(2020, 10); };
-    myDate.dateLength = 13;
+    var myDate = function (year, month) { return Date.UTC(year, month); };
+    myDate.dateLength = function (utcDate) {
+        return utcDate.toString().length;
+    };
     myDate.objName = "MyDate";
     return myDate;
 }
 var myUTCDate = getMyUTCDate();
 console.log(myUTCDate);
-console.log(myUTCDate());
+console.log(myUTCDate(2020, 10));
 console.log(myUTCDate.objName);
-console.log(myUTCDate.dateLength);
+console.log(myUTCDate.dateLength(myUTCDate(2020, 10)));
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

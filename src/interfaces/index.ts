@@ -157,22 +157,24 @@ val7.child2Method("val7 called")
 //Hybrid interface
 
 interface MyUTCDateInterface {
-    (): number
-    dateLength: number
-    objName: string
+    (year: number, month: number): number // function declaration
+    objName: string // property
+    dateLength(utcDate: number): number // method
 }
-  
+
 function getMyUTCDate(): MyUTCDateInterface {
-    const myDate = function () { return Date.UTC(2020, 10) } as MyUTCDateInterface
-    myDate.dateLength = 13
+    const myDate = function (year: number, month: number) { return Date.UTC(year, month) } as MyUTCDateInterface
+    myDate.dateLength = (utcDate: number) => {
+        return utcDate.toString().length
+    }
     myDate.objName = "MyDate"
     return myDate
 }
 
 const myUTCDate = getMyUTCDate()
 console.log(myUTCDate)
-console.log(myUTCDate())
+console.log(myUTCDate(2020, 10))
 console.log(myUTCDate.objName)
-console.log(myUTCDate.dateLength)
+console.log(myUTCDate.dateLength(myUTCDate(2020, 10)))
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

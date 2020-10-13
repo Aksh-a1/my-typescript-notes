@@ -17,7 +17,7 @@ var Func4 = function (prop1, prop2) {
 var Func5 = function (prop1, prop2) {
     if (prop2 === void 0) { prop2 = 9999; }
     console.log(prop1 + prop2);
-    // Below return statement will give error because Func4 implements
+    // Below return statement at line 29, will give error because Func4 implements
     // FunctionInterface and in that it is given that function will return boolean
     // return 0
     return true;
@@ -73,6 +73,55 @@ function DoubleItTyped(prop) {
 }
 console.log(DoubleItTyped(99));
 console.log(DoubleItTyped('Hola'));
-// console.log(DoubleItTyped([1,2,3,4]) // Cannot do this because only number and string is expected.
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-// this parameter
+var obj1 = {
+    prop1: 1111,
+    prop2: "Hola",
+    func: function () {
+        console.log(this.prop1);
+    },
+    funcArr: function () {
+        // Here you cannot write this.prop1 cause 'this'
+        // referes global for this function and compiler warns you for this.
+        // console.log(this.prop1)
+    }
+};
+var Example = /** @class */ (function () {
+    function Example(value1) {
+        this.value1 = value1;
+    }
+    // Even if this method is placed inside Example class giving 'this: Object1'
+    // as the parameter informs that the below function will be using this
+    // scope of 'Object1' and we can access values of that object scope using 'this'.
+    Example.prototype.methodWithThisScopeChanged = function () {
+        var _this = this;
+        return function () {
+            console.log(_this);
+            return _this.prop1 * _this.prop1;
+        };
+    };
+    return Example;
+}());
+var classInstance = new Example(9000);
+// calling the mehtod of Example using the scope of 'Object1'. Calling with
+// different scope will make compiler warn you that something's wrong.
+var functionUsingChangedThisScope = classInstance.methodWithThisScopeChanged.call(obj1);
+console.log(functionUsingChangedThisScope());
+var Example2 = /** @class */ (function () {
+    function Example2(value1) {
+        this.value1 = value1;
+    }
+    // By passing 'this: void' makes 'this' unusable inside this function.
+    Example2.prototype.methodWithThisScopeChanged = function () {
+        var _this = this;
+        return function () {
+            console.log(_this);
+            // Below line gives error because now you cannot use 'this' inside
+            // this function so you cannot access any values using 'this'.
+            // return this.value1
+        };
+    };
+    return Example2;
+}());
+var classInstance2 = new Example2(9000);
+var functionUsingVoidThisScope = classInstance2.methodWithThisScopeChanged();
+console.log(functionUsingVoidThisScope());

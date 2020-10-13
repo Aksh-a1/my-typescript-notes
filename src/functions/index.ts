@@ -24,7 +24,7 @@ interface FunctionInterface {
 
 const Func5: FunctionInterface = (prop1, prop2 = 9999) => {
     console.log(prop1+prop2)
-    // Below return statement will give error because Func4 implements
+    // Below return statement at line 29, will give error because Func4 implements
     // FunctionInterface and in that it is given that function will return boolean
     // return 0
     return true
@@ -105,5 +105,68 @@ console.log(DoubleItTyped('Hola'))
 
 // this parameter
 
+interface Object1 {
+    prop1: number
+    prop2: string
+    func(): void
+    funcArr?: () => void 
+}
 
+const obj1: Object1 = {
+    prop1: 1111,
+    prop2: "Hola",
+    func: function () {
+        console.log(this.prop1)
+    },
+    funcArr: () => {
+        // Here you cannot write this.prop1 cause 'this'
+        // referes global for this function and compiler warns you for this.
+        // console.log(this.prop1)
+    }
+}
 
+class Example {
+    value1: number
+
+    constructor(value1: number) {
+        this.value1 = value1
+    }
+
+    // Even if this method is placed inside Example class giving 'this: Object1'
+    // as the parameter informs that the below function will be using this
+    // scope of 'Object1' and we can access values of that object scope using 'this'.
+    methodWithThisScopeChanged(this: Object1) {
+        return () => {
+            console.log(this)
+            return this.prop1 * this.prop1
+        }
+    }
+}
+
+const classInstance = new Example(9000)
+// calling the mehtod of Example using the scope of 'Object1'. Calling with
+// different scope will make compiler warn you that something's wrong.
+const functionUsingChangedThisScope = classInstance.methodWithThisScopeChanged.call(obj1)
+console.log(functionUsingChangedThisScope())
+
+class Example2 {
+    value1: number
+
+    constructor(value1: number) {
+        this.value1 = value1
+    }
+
+    // By passing 'this: void' makes 'this' unusable inside this function.
+    methodWithThisScopeChanged(this: void) {
+        return () => {
+            console.log(this)
+            // Below line gives error because now you cannot use 'this' inside
+            // this function so you cannot access any values using 'this'.
+            // return this.value1
+        }
+    }
+}
+
+const classInstance2 = new Example2(9000)
+const functionUsingVoidThisScope = classInstance2.methodWithThisScopeChanged()
+console.log(functionUsingVoidThisScope())

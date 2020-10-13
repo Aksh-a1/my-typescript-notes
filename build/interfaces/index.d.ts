@@ -57,9 +57,9 @@ interface ChildInterface2 extends ParentInterface1, ParentInterface2 {
 declare const val6: ChildInterface1;
 declare const val7: ChildInterface2;
 interface MyUTCDateInterface {
-    (): number;
-    dateLength: number;
+    (year: number, month: number): number;
     objName: string;
+    dateLength(utcDate: number): number;
 }
 declare function getMyUTCDate(): MyUTCDateInterface;
 declare const myUTCDate: MyUTCDateInterface;
