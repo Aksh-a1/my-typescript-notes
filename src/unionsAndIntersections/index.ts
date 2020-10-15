@@ -48,7 +48,7 @@ const unionFunc2 = (prop: Params): number => {
         // This else block is extra piece of work but if we accidently leave a
         // type we will get an error here because then else condition will run
         // with some type of prop and 'missingType' expects a 'never' type which
-        // will become wrong. You can add a type to Params or comment and elseif
+        // will become wrong. You can add a type to Params or comment an elseif
         // block to check it.
         const missingType: never = prop
         console.error('You missed: ', missingType)
@@ -62,3 +62,40 @@ const unionFunc2 = (prop: Params): number => {
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 // Intersection
+
+interface PresonalInfo {
+    name: string,
+    age: number,
+    sport: string
+}
+
+interface Cricketer {
+    runsScored?: number,
+    team: string
+}
+
+interface Footballer {
+    goalsScored?: number,
+    club: string
+}
+
+// A type which contain fields from Cricketer and PersonalInfo both.
+type CricketerInfo = Cricketer & PresonalInfo
+
+// A type which contain fields from Footballer and PersonalInfo both.
+type FootballerInfo = Footballer & PresonalInfo
+
+const printCricketInfo = (response: CricketerInfo) => {
+    console.log(response.name) // name is a common field so this we can access.
+    console.log(response.team)
+    // console.log(response.club) // Cannot access this because it is present in footballer type
+}
+
+const response1: CricketerInfo = {
+    name: 'Boi',
+    age: 22,
+    sport: 'cricket',
+    team: 'Notherdamya'
+}
+
+printCricketInfo(response1)

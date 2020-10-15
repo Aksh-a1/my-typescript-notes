@@ -38,7 +38,7 @@ var unionFunc2 = function (prop) {
         // This else block is extra piece of work but if we accidently leave a
         // type we will get an error here because then else condition will run
         // with some type of prop and 'missingType' expects a 'never' type which
-        // will become wrong. You can add a type to Params or comment and elseif
+        // will become wrong. You can add a type to Params or comment an elseif
         // block to check it.
         var missingType = prop;
         console.error('You missed: ', missingType);
@@ -48,5 +48,15 @@ var unionFunc2 = function (prop) {
     // return statement which will return a value which you don't expect.
     // return -1
 };
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-// Intersection
+var printCricketInfo = function (response) {
+    console.log(response.name); // name is a common field so this we can access.
+    console.log(response.team);
+    // console.log(response.club) // Cannot access this because it is present in footballer type
+};
+var response1 = {
+    name: 'Boi',
+    age: 22,
+    sport: 'cricket',
+    team: 'Notherdamya'
+};
+printCricketInfo(response1);
