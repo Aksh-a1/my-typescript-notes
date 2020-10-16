@@ -70,3 +70,66 @@ class DummyClass2 extends ParentClass1 implements Child11 {
         console.log("Dummyclass2: ", prop)
     }
 }
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+//Private, Protected & Public
+
+type FullName = {
+    firstName: string,
+    lastName: string
+}
+
+class GrandParent {
+    private grandParentName: FullName
+
+    constructor (name: FullName) {
+        this.grandParentName = name
+    }
+
+    get grandParentNameGetter () {
+        return `${this.grandParentName.firstName} ${this.grandParentName.lastName}`
+    }
+}
+
+class Parent extends GrandParent {
+    protected parentName: FullName
+
+    constructor (name: FullName) {
+        super({ firstName: 'GrandParent', lastName: name.lastName })
+        this.parentName = name
+    }
+
+    get parentNameGetter () {
+        // this.grandParentName // Not accessible cause it is private
+        return `${this.parentName.firstName} ${this.parentName.lastName}`
+    }
+}
+
+class Child extends Parent {
+    // Parameter Properties where you declare and assign the property in contructor parameter
+    constructor (public childName: FullName) {
+        super({ firstName: 'Parent', lastName: childName.lastName })
+    }
+
+    get childNameGetter () {
+        this.parentName // Accessible since it is protected
+        return `${this.childName.firstName} ${this.childName.lastName}`
+    }
+}
+
+const grandParentObj = new GrandParent({ firstName: 'James', lastName: 'Sharma'})
+const parentObj = new Parent({ firstName: 'Jhonny', lastName: 'Jain'})
+const childObj = new Child({ firstName: 'James', lastName: 'Agarwal'})
+
+// console.log(grandParentObj.grandParentName) // Private variable not accessible outside class
+console.log(grandParentObj.grandParentNameGetter)
+
+// console.log(parentObj.parentName) // Protected variable not accessible outside class
+console.log(parentObj.parentNameGetter)
+console.log(parentObj.grandParentNameGetter)
+
+console.log(childObj.childName) // By default public and always accessible anywhere
+console.log(childObj.childNameGetter)
+console.log(childObj.parentNameGetter)
+console.log(childObj.grandParentNameGetter)

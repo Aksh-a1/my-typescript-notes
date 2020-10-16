@@ -28,3 +28,25 @@ declare class DummyClass1 implements Child11 {
 declare class DummyClass2 extends ParentClass1 implements Child11 {
     childMethod(prop: string): void;
 }
+declare type FullName = {
+    firstName: string;
+    lastName: string;
+};
+declare class GrandParent {
+    private grandParentName;
+    constructor(name: FullName);
+    get grandParentNameGetter(): string;
+}
+declare class Parent extends GrandParent {
+    protected parentName: FullName;
+    constructor(name: FullName);
+    get parentNameGetter(): string;
+}
+declare class Child extends Parent {
+    childName: FullName;
+    constructor(childName: FullName);
+    get childNameGetter(): string;
+}
+declare const grandParentObj: GrandParent;
+declare const parentObj: Parent;
+declare const childObj: Child;

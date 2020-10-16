@@ -68,3 +68,63 @@ var DummyClass2 = /** @class */ (function (_super) {
     };
     return DummyClass2;
 }(ParentClass1));
+var GrandParent = /** @class */ (function () {
+    function GrandParent(name) {
+        this.grandParentName = name;
+    }
+    Object.defineProperty(GrandParent.prototype, "grandParentNameGetter", {
+        get: function () {
+            return this.grandParentName.firstName + " " + this.grandParentName.lastName;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return GrandParent;
+}());
+var Parent = /** @class */ (function (_super) {
+    __extends(Parent, _super);
+    function Parent(name) {
+        var _this = _super.call(this, { firstName: 'GrandParent', lastName: name.lastName }) || this;
+        _this.parentName = name;
+        return _this;
+    }
+    Object.defineProperty(Parent.prototype, "parentNameGetter", {
+        get: function () {
+            // this.grandParentName // Not accessible cause it is private
+            return this.parentName.firstName + " " + this.parentName.lastName;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Parent;
+}(GrandParent));
+var Child = /** @class */ (function (_super) {
+    __extends(Child, _super);
+    // Parameter Properties where you declare and assign the property in contructor parameter
+    function Child(childName) {
+        var _this = _super.call(this, { firstName: 'Parent', lastName: childName.lastName }) || this;
+        _this.childName = childName;
+        return _this;
+    }
+    Object.defineProperty(Child.prototype, "childNameGetter", {
+        get: function () {
+            this.parentName; // Accessible since it is protected
+            return this.childName.firstName + " " + this.childName.lastName;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Child;
+}(Parent));
+var grandParentObj = new GrandParent({ firstName: 'James', lastName: 'Sharma' });
+var parentObj = new Parent({ firstName: 'Jhonny', lastName: 'Jain' });
+var childObj = new Child({ firstName: 'James', lastName: 'Agarwal' });
+// console.log(grandParentObj.grandParentName) // Private variable not accessible outside class
+console.log(grandParentObj.grandParentNameGetter);
+// console.log(parentObj.parentName) // Protected variable not accessible outside class
+console.log(parentObj.parentNameGetter);
+console.log(parentObj.grandParentNameGetter);
+console.log(childObj.childName); // By default public and always accessible anywhere
+console.log(childObj.childNameGetter);
+console.log(childObj.parentNameGetter);
+console.log(childObj.grandParentNameGetter);
