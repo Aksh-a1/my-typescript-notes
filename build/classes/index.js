@@ -128,3 +128,54 @@ console.log(childObj.childName); // By default public and always accessible anyw
 console.log(childObj.childNameGetter);
 console.log(childObj.parentNameGetter);
 console.log(childObj.grandParentNameGetter);
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//Abstract classes
+var Animal = /** @class */ (function () {
+    function Animal() {
+    }
+    // This property will be directly inherited
+    Animal.prototype.sleep = function () {
+        console.log("zzzzzZZZZZ.......");
+    };
+    return Animal;
+}());
+var Bird = /** @class */ (function (_super) {
+    __extends(Bird, _super);
+    function Bird(type) {
+        var _this = _super.call(this) || this;
+        _this.type = type;
+        return _this;
+    }
+    Bird.prototype.sound = function () {
+        console.log("I chirp chirp chirp....");
+    };
+    Bird.prototype.move = function () {
+        console.log("I fly. Wheeeeeeee.....");
+    };
+    return Bird;
+}(Animal));
+var Cow = /** @class */ (function (_super) {
+    __extends(Cow, _super);
+    function Cow(type) {
+        var _this = _super.call(this) || this;
+        _this.type = type;
+        return _this;
+    }
+    Cow.prototype.sound = function () {
+        console.log("I moooooo....");
+    };
+    Cow.prototype.move = function () {
+        console.log("I walk. Moooo....");
+    };
+    return Cow;
+}(Animal));
+var cow = new Cow("Beefmaster");
+console.log(cow.type);
+cow.move();
+cow.sound();
+cow.sleep();
+var bird = new Bird("Pigeon");
+console.log(bird.type);
+bird.move();
+bird.sound();
+bird.sleep();

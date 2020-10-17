@@ -133,3 +133,54 @@ console.log(childObj.childName) // By default public and always accessible anywh
 console.log(childObj.childNameGetter)
 console.log(childObj.parentNameGetter)
 console.log(childObj.grandParentNameGetter)
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+//Abstract classes
+
+abstract class Animal {
+    // These abstract properties must be implemented in derived class
+    abstract type: string
+    abstract sound(): void
+
+    // This property will be directly inherited
+    sleep(): void {
+        console.log("zzzzzZZZZZ.......")
+    }
+}
+
+class Bird extends Animal {
+    constructor(public type: string){
+        super()
+    }
+    sound() {
+        console.log("I chirp chirp chirp....")
+    }
+    move() {
+        console.log("I fly. Wheeeeeeee.....")
+    }
+}
+
+class Cow extends Animal {
+    constructor(public type: string){
+        super()
+    }
+    sound() {
+        console.log("I moooooo....")
+    }
+    move() {
+        console.log("I walk. Moooo....")
+    }
+}
+
+const cow = new Cow("Beefmaster")
+console.log(cow.type)
+cow.move()
+cow.sound()
+cow.sleep()
+
+const bird = new Bird("Pigeon")
+console.log(bird.type)
+bird.move()
+bird.sound()
+bird.sleep()

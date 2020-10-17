@@ -50,3 +50,22 @@ declare class Child extends Parent {
 declare const grandParentObj: GrandParent;
 declare const parentObj: Parent;
 declare const childObj: Child;
+declare abstract class Animal {
+    abstract type: string;
+    abstract sound(): void;
+    sleep(): void;
+}
+declare class Bird extends Animal {
+    type: string;
+    constructor(type: string);
+    sound(): void;
+    move(): void;
+}
+declare class Cow extends Animal {
+    type: string;
+    constructor(type: string);
+    sound(): void;
+    move(): void;
+}
+declare const cow: Cow;
+declare const bird: Bird;
