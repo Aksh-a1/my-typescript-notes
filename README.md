@@ -12,6 +12,8 @@ Then why'd I do this? Well just for fun :man_shrugging: :grin:
 
 ## Setup
 
+_`src` folder contains all the `TS` files and `build` folder contains the equivalent `JS` and declaration(`*.d.ts`) files._
+
 Steps used to initialise a basic typescript node project :
 1. `npm init -y`
 2. `npm install typescript nodemon @types/node --save-dev`
