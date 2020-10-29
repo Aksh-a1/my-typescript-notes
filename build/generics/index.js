@@ -16,3 +16,19 @@ var numberArray = generateArray(9, 5);
 var stringArray = generateArray('H', 4);
 var booleanArray = generateArray(true, 9);
 console.log(numberArray, stringArray, booleanArray);
+var funcGenInterface = function (props) {
+    if (typeof props.prop2 === 'number') {
+        return props.prop1 + props.prop2;
+    }
+    else if (typeof props.prop2 === 'string') {
+        return props.prop1 + props.prop2;
+    }
+    else {
+        throw new Error("Operator '+' cannot be applied to types 'number' and '" + typeof props.prop2 + "'");
+    }
+};
+console.log(funcGenInterface({ prop1: 1, prop2: 3 }));
+// Generic is declared to use number so we cannot pass string.
+// console.log(funcGenInterface<number>({ prop1: 1, prop2: "o" }))
+console.log(funcGenInterface({ prop1: 1, prop2: "o" }));
+console.log(funcGenInterface({ prop1: 1, prop2: true }));
