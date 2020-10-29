@@ -19,3 +19,4 @@ declare let variable12: never;
 declare const fun1: () => never;
 declare const variable13: object;
 declare const variable14: number;
+declare const variable15: number;

@@ -23,7 +23,7 @@ var Language;
 var variable6 = Language.TypeScript;
 // Any
 var variable8;
-variable8.hola(); // This is allowed with "any" but will throw an error on runtime.
+// variable8.hola() // This is allowed with "any" but will throw an error on runtime.
 // Unknown
 var variable7; // value not known. Might come later in program from anywhere, we don't know.
 // variable7.hola() // This is not allowed with unknown. More safe than "any"
@@ -49,4 +49,9 @@ var variable13 = {
     prop2: 0
 };
 // Type assertions
-var variable14 = 12345;
+// const variable14 = Math.round(variable7) // It gives error because variable7 is not a number.
+var variable14 = Math.round(variable7);
+console.log(variable14);
+// Below type assertion is not allowed in JSX because it conflicts with syntax of JSX.
+var variable15 = Math.round(variable7);
+console.log(variable14);

@@ -29,7 +29,7 @@ const variable6: Language = Language.TypeScript
 
 // Any
 let variable8: any
-variable8.hola() // This is allowed with "any" but will throw an error on runtime.
+// variable8.hola() // This is allowed with "any" but will throw an error on runtime.
 
 // Unknown
 let variable7: unknown // value not known. Might come later in program from anywhere, we don't know.
@@ -60,5 +60,11 @@ const variable13: object = {
 }
 
 // Type assertions
-const variable14: number = 12345
+// const variable14 = Math.round(variable7) // It gives error because variable7 is not a number.
+const variable14 = Math.round(variable7 as number)
+console.log(variable14)
+
+// Below type assertion is not allowed in JSX because it conflicts with syntax of JSX.
+const variable15 = Math.round(<number>variable7)
+console.log(variable14)
 
